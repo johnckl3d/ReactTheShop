@@ -15,10 +15,10 @@ defaultNavigationOptions: {
         backgroundColor: Colors.primary
     },
     headerTitleStyle: {
-        //fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold'
     },
     headerBackTitleStyle: {
-        //fontFamily: 'open-sans'
+        fontFamily: 'open-sans'
     },
     headerTintColor: 'white'
 }
