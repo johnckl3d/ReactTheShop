@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 //import { AppLoading, Asset } from "expo";
 import * as Expo from "expo";
 import * as Font from "expo-font";
-//import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import productsReducer from "./store/reducers/products";
 import cartReducer from "./store/reducers/cart";
 import ShopNavigator from "./navigation/ShopNavigator";
@@ -26,7 +26,7 @@ export default class App extends Component {
   }
   async componentWillMount() {
     await Font.loadAsync({
-      //Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
+      ...Ionicons.font,
       "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
       "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf")
     });
