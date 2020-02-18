@@ -5,12 +5,12 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/UI/HeaderButton";
 
 const OrdersScreen = props => {
-  const orders = useSelector((state = state.orders.orders));
+  const orders = useSelector(state => state.orders.orders);
   return (
     <FlatList
       data={orders}
       keyExtractor={item => item.id}
-      renderItem={itemData.item.totalAmount}
+      renderItem={itemData => <Text>itemData.item.totalAmount</Text>}
     ></FlatList>
   );
 };
