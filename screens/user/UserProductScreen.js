@@ -1,12 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { FlatList } from "react-native-gesture-handler";
+import { useSelector, useDispatch } from "react-redux";
+import { FlatList, Button } from "react-native";
 import ProductItem from "../../components/shop/ProductItem";
 import HeaderButton from "../../components/UI/HeaderButton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import Colors from "../../constants/Colors";
+import * as productActions from "../../store/actions/products";
+
 const UserProductsScreen = props => {
   const userProducts = useSelector(state => state.products.userProducts);
-
+  const dispatch = useDispatch();
+  const editProductHandler = (id) => {
+props.navigation.navigate('EditProduct', {productId: id});
+  }
   return (
     <FlatList
       data={userProducts}
@@ -16,9 +22,21 @@ const UserProductsScreen = props => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onViewDetail={() => {}}
-          onAddToCart={() => {}}
-        ></ProductItem>
+          onSelect={() => {
+            editProductHandler(itemData.item.id);
+          }}
+        >
+          <Button color={Colors.primary} title="Edit" onPress={() => {
+              editProductHandler(itemData.item.id);
+          }} />
+          <Button
+            color={Colors.primary}
+            title="Delete"
+            onPress={() => {
+              dispatch(productActions.deleteProduct(itemData.item.id));
+            }}
+          />
+        </ProductItem>
       )}
     ></FlatList>
   );
@@ -37,7 +55,18 @@ UserProductsScreen.navigationOptions = navData => {
           }}
         />
       </HeaderButtons>
-    )
+    ),
+    headerRight: (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Add"
+            iconName={"ios-create"}
+            onPress={() => {
+              navData.navigation.navigate("EditProduct");
+            }}
+          />
+        </HeaderButtons>
+      ),
   };
 };
 export default UserProductsScreen;

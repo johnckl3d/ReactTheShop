@@ -3,12 +3,10 @@ import {
   View,
   Text,
   Image,
-  Button,
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
-  TouchableNativeFeedbackBase
 } from "react-native";
 import Colors from "../../constants/Colors";
 
@@ -31,7 +29,7 @@ const ProductItem = props => {
               <Text style={styles.price}>{props.price.toFixed(2)}</Text>
             </View>
             <View style={styles.actions}>
-            
+            {props.children}
             </View>
           </View>
         </TouchableCmp>
@@ -77,12 +75,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: "25%",
+    height: "23%",
     paddingHorizontal: 20
   },
   details: {
     alignItems: "center",
-    height: "15%",
+    height: "17%",
     padding: 10
   },
   touchable: {
